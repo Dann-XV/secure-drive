@@ -10,12 +10,14 @@ const mongoose = require('mongoose');
 
 // Routes
 const authJwt = require('./helpers/jwt');
-const userRoutes = require('./routes/users'); 
+const userRoutes = require('./routes/users');
+const fileRoutes = require('./routes/files');
 
 // Middleware
 app.use(morgan('dev'));
 app.use(express.json());
 app.use('/users', userRoutes);
+app.use('/files', fileRoutes);
 app.use(authJwt());
 
 
