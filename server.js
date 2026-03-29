@@ -6,19 +6,23 @@ const morgan = require('morgan');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
-
-
-// Routes
+const cors = require('cors');
 const authJwt = require('./helpers/jwt');
-const userRoutes = require('./routes/users');
-const fileRoutes = require('./routes/files');
+
 
 // Middleware
+app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use('/users', userRoutes);
 app.use('/files', fileRoutes);
 app.use(authJwt());
+
+// Routes
+const userRoutes = require('./routes/users');
+const fileRoutes = require('./routes/files');
+
+
 
 
 mongoose
