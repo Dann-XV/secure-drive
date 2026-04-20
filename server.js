@@ -17,6 +17,7 @@ const fileRoutes = require("./routes/files");
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(express.static('public'));
 app.use("/users", userRoutes);
 app.use("/files", authJwt(), fileRoutes);
 

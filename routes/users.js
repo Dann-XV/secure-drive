@@ -32,11 +32,97 @@ router.post('/register', async (req, res) => {
 
     // Send confirmation email
     const confirmationUrl = `http://localhost:3000/users/confirm/${user.confirmationToken}`;
+    const emailHtml = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body {
+                font-family: 'Poppins', Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+            }
+            .container {
+                max-width: 600px;
+                margin: 20px auto;
+                background-color: #ffffff;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                overflow: hidden;
+            }
+            .header {
+                background-color: #191970;
+                color: #ffffff;
+                padding: 30px;
+                text-align: center;
+            }
+            .header h1 {
+                margin: 0;
+                font-size: 28px;
+            }
+            .content {
+                padding: 30px;
+                color: #333333;
+            }
+            .content p {
+                font-size: 16px;
+                line-height: 1.6;
+                margin: 10px 0;
+            }
+            .button-container {
+                text-align: center;
+                margin: 30px 0;
+            }
+            .confirm-button {
+                display: inline-block;
+                background-color: #191970;
+                color: #ffffff;
+                padding: 12px 30px;
+                text-decoration: none;
+                border-radius: 4px;
+                font-weight: 600;
+                font-size: 16px;
+            }
+            .confirm-button:hover {
+                background-color: #0f0f4a;
+            }
+            .footer {
+                background-color: #f4f4f4;
+                padding: 20px;
+                text-align: center;
+                font-size: 12px;
+                color: #666666;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>Welcome to Secure Drive!</h1>
+            </div>
+            <div class="content">
+                <p>Hi there,</p>
+                <p>Thank you for signing up. To complete your registration and secure your account, please confirm your email address by clicking the button below:</p>
+                <div class="button-container">
+                    <a href="${confirmationUrl}" class="confirm-button">Confirm Email</a>
+                </div>
+                <p>If you didn't create this account, you can safely ignore this email.</p>
+                <p>Best regards,<br>The Secure Drive Team</p>
+            </div>
+            <div class="footer">
+                <p>This is an automated message. Please do not reply to this email.</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    `;
     await transporter.sendMail({
         from: process.env.EMAIL_USER,
         to: user.email,
-        subject: 'Confirm your email',
-        html: `<p>Click <a href="${confirmationUrl}">here</a> to confirm your account.</p>`,
+        subject: 'Confirm your email - Secure Drive',
+        html: emailHtml,
     });
     res.json({message: 'registration successful'})
 })

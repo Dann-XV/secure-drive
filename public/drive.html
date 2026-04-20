@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Drive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p6O1Rb0TbNfQhD1ejE7oI1Y2KaefrS8Jj5tW5BNF7PdcnX7HDvJH9x6TxfGddRWYtZ7Xh7OgJv1o0x3D8L+Uhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/signup.css">
+</head>
+<body>
+    <div class="drive-container">
+        <header class="drive-header">
+            <div>
+                <h1>Secure Drive</h1>
+                <p>Upload files and access them securely.</p>
+            </div>
+            <button id="logoutButton" class="secondary-button">Logout</button>
+        </header>
+
+        <section class="files-panel">
+            <div class="files-header">
+                <h2>Your Files</h2>
+                <span id="filesCount">0 files</span>
+            </div>
+            <div id="message" class="drive-message"></div>
+            <div id="fileList" class="file-list">
+                <p class="empty-state">No files uploaded yet. Click the plus button to add files.</p>
+            </div>
+        </section>
+    </div>
+
+    <input type="file" id="fileInput" hidden>
+    <button type="button" id="uploadButton" class="fab-button" aria-label="Upload file">
+        <i class="fa-solid fa-upload"></i> Upload
+    </button>
+
+    <script src="js/drive.js"></script>
+</body>
+</html>
